@@ -8,6 +8,11 @@ Optional:
     - hidden_membership_enabled
     - members
     - prevent_duplicate_names
+    - timeouts (block):
+        - create (optional)
+        - delete (optional)
+        - read (optional)
+        - update (optional)
 EOT
 
   type = map(object({
@@ -16,6 +21,12 @@ EOT
     hidden_membership_enabled = optional(bool)
     members                   = optional(set(string))
     prevent_duplicate_names   = optional(bool)
+    timeouts = optional(object({
+      create = optional(string)
+      delete = optional(string)
+      read   = optional(string)
+      update = optional(string)
+    }))
   }))
   validation {
     condition = alltrue([
